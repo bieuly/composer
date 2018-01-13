@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
       <MuiThemeProvider>
-        <AppBar/>
+        <AppBar title="COMPOSER"/>
         <TextField hintText="Sweet Item"/>
         </MuiThemeProvider>
       </div>
