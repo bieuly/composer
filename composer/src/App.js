@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TextField from 'material-ui/TextField';
+
 
 class App extends Component {
   render() {
@@ -9,6 +11,7 @@ class App extends Component {
       <div className="App">
       <MuiThemeProvider>
         <AppBar/>
+        <TextField hintText="Sweet Item"/>
         </MuiThemeProvider>
       </div>
     );
