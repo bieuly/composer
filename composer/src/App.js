@@ -4,6 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
+import {List, ListItem} from 'material-ui/List';
 
 const mainCardStyle = {
   height: '50%',
@@ -22,6 +23,9 @@ class App extends Component {
       	<Paper style={mainCardStyle}>
 	        <TextField hintText="Sweet Item"/>
 	    </Paper>
+	    <List>
+	    	<ListItem primaryText="Test"/>
+	    </List>
 	  </MuiThemeProvider>
        
       </div>
