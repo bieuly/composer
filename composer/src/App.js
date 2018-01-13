@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
       <MuiThemeProvider>
-        <AppBar/>
+        <AppBar title="COMPOSER"/>
         </MuiThemeProvider>
       </div>
     );
