@@ -4,6 +4,10 @@ import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {List, ListItem} from 'material-ui/List';
 import TextButtonComponent from './components/TextButtonComponent';
+import ComposerBoard from './components/ComposerBoard';
+import ReactDOM from 'react-dom';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 const listStyle = {
 	width: 300,
@@ -20,7 +24,27 @@ const listItemStyle = {
 	borderColor: '#00BFFF'
 }
 
+const entrySource = {
+  beginDrag(props) {
+    return {};
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
 class App extends Component {
+
+renderEntry(x, y) {
+  const [entryX, entryY] = this.props.entryPosition;
+  if (x === entryX && y === entryY) {
+    return <ListItem primaryText="test123" />;
+  }
+}
 
 constructor(props) {
     super(props);
@@ -44,6 +68,8 @@ constructor(props) {
  }
 
   render() {
+    const x = 12;
+    const y = 12
     return (
       <div className="App">
       <MuiThemeProvider>
@@ -54,8 +80,10 @@ constructor(props) {
      			return <ListItem primaryText={item} style={listItemStyle}/>
    			})}
 	    </List>
+      <ComposerBoard>
+      {this.renderPiece(x, y)}
+      </ComposerBoard>
 	  </MuiThemeProvider>
-       
       </div>
     );
   }
