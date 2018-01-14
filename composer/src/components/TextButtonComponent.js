@@ -33,7 +33,7 @@ handleOnChange(evt) {
     	return (
 	
 	<Paper style={mainCardStyle}>
-	        <TextField hintText="Item" onChange={this.handleOnChange.bind(this)} />
+	        <TextField hintText="Item" value={this.state.value} onChange={this.handleOnChange.bind(this)} />
           <FloatingActionButton mini={true} style={buttonStyle} onClick={()=>this.props.addItem(this.state.value)}>
             <ContentAdd />
           </FloatingActionButton>

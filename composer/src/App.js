@@ -4,6 +4,9 @@ import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {List, ListItem} from 'material-ui/List';
 import TextButtonComponent from './components/TextButtonComponent';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import FlatButton from 'material-ui/FlatButton';
 
 const listStyle = {
 	width: 300,
@@ -43,17 +46,30 @@ constructor(props) {
 	}
  }
 
+  printDocument() {
+    const input = document.getElementById('divToPrint');
+    html2canvas(input).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, 'JPEG', 0, 0);
+        // pdf.output('dataurlnewwindow');
+        pdf.save("download.pdf");
+      })
+    ;
+  }
+
   render() {
     return (
       <div className="App">
       <MuiThemeProvider>
       <AppBar title="COMPOSER"/>
       	<TextButtonComponent addItem={this.addEntry.bind(this)} />
-	    <List style={listStyle}>
+	    <List id="divToPrint" style={listStyle}>
 	    	{this.state.entries.map(function(item, i) {
      			return <ListItem primaryText={item} style={listItemStyle}/>
    			})}
 	    </List>
+		<FlatButton backgroundColor="#a4c639" label="PDF" secondary={true} onClick={()=>this.printDocument()}/>
 	  </MuiThemeProvider>
        
       </div>
