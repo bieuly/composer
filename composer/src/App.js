@@ -2,24 +2,23 @@ import React, { Component } from 'react';
 import './App.css';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
 import {List, ListItem} from 'material-ui/List';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import TextButtonComponent from './components/TextButtonComponent';
 
-const mainCardStyle = {
-  height: '50%',
-  width: '30%',
-  margin: 20,
-  textAlign: 'center',
-  display: 'inline-block',
-};
+const listStyle = {
+	width: 300,
+	position: "absolute",
+	right: 40,
+}
 
-const buttonStyle = {
-  margin: 20,
-};
+const listItemStyle = {
+	borderLeftWidth: '1px',
+	borderTopWidth: '0px',
+	borderRightWidth: '0px',
+	borderBottomWidth: '0px',
+	borderStyle: 'solid',
+	borderColor: '#00BFFF'
+}
 
 class App extends Component {
 
@@ -36,14 +35,24 @@ constructor(props) {
 	this.setState({ entries: newList })
  }
 
+ removeEntry(evt) {
+ 	var index = this.state.indexOf(evt);
+ 	if (index > -1) {
+    	var newEntries = this.state.entries.splice(index, 1);
+    	this.setState({entries: newEntries})
+	}
+ }
+
   render() {
     return (
       <div className="App">
       <MuiThemeProvider>
       <AppBar title="COMPOSER"/>
       	<TextButtonComponent addItem={this.addEntry.bind(this)} />
-	    <List>
-	    	<ListItem primaryText="Test"/>
+	    <List style={listStyle}>
+	    	{this.state.entries.map(function(item, i) {
+     			return <ListItem primaryText={item} style={listItemStyle}/>
+   			})}
 	    </List>
 	  </MuiThemeProvider>
        
