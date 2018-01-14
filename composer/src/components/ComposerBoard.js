@@ -3,25 +3,30 @@ import Paper from 'material-ui/Paper';
 import { DragDropContext } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-
-const mainCardStyle = {
-  height: '50%',
-  width: '30%',
-  margin: 20,
-  textAlign: 'center',
-  display: 'inline-block',
-};
+import {List} from 'material-ui/List';
+// const mainCardStyle = {
+//   height: 400,
+//   width: 100,
+//   margin: 20,
+//   textAlign: 'center',
+//   display: 'inline-block',
+// };
 
 class ComposerBoard extends Component {
 
 constructor(props) {
     super(props);
+    this.state = {
+      entries: []
     };
+};
 
 	render() {
     	return (
-	<Paper style={mainCardStyle}>
-          {this.props.children}
+	<Paper>
+    <List>
+      
+    </List>
 	</Paper>
 )
 	}

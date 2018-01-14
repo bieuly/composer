@@ -12,6 +12,9 @@ import DraggableListItem from './components/DraggableListItem';
 import ReactDOM from 'react-dom';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import { Draggable, Droppable } from 'react-drag-and-drop'
+import Paper from 'material-ui/Paper';
+import { ListItem } from 'material-ui/List';
 
 const listStyle = {
 	width: 300,
@@ -19,13 +22,18 @@ const listStyle = {
 	right: 40,
 }
 
+const paperStyle ={
+	width: 500,
+	height: 300,
+}
 
 class App extends Component {
 
 constructor(props) {
     super(props);
     this.state = {
-    	entries: []
+    	entries: [],
+    	composedEntries: []
     };
   }
 
@@ -55,18 +63,36 @@ constructor(props) {
     ;
   }
 
+onDrop(data) {
+    var newList = this.state.composedEntries.slice();
+	newList.push(data.item);
+	this.setState({ composedEntries: newList });
+	console.log(data.item)
+    }
+
   render() {
     return (
       <div className="App">
       <MuiThemeProvider>
       <AppBar title="COMPOSER by Billy"/>
       	<TextButtonComponent addItem={this.addEntry.bind(this)} />
-	    <List id="divToPrint" style={listStyle}>
+	    <List style={listStyle}>
 	    	{this.state.entries.map(function(item, i) {
-     			return <DraggableListItem itemText={item}/>
+     			return <Draggable type="item" data={item}><ListItem primaryText={item}></ListItem></Draggable>
    			})}
 	    </List>
 		<FlatButton backgroundColor="#a4c639" label="PDF" secondary={true} onClick={()=>this.printDocument()}/>
+		<Droppable
+                types={['item']} // <= allowed drop types 
+                onDrop={this.onDrop.bind(this)}>
+                <Paper id="divToPrint" style={paperStyle}>
+                	<List id="composed">
+				    	{this.state.composedEntries.map(function(item, i) {
+			     			return <ListItem primaryText={item} />
+			   			})}
+				    </List>
+                </Paper>
+            </Droppable>
 	  </MuiThemeProvider>
       </div>
     );
