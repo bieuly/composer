@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 import {List, ListItem} from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import TextButtonComponent from './components/TextButtonComponent';
 
 const mainCardStyle = {
   height: '50%',
@@ -41,12 +42,7 @@ constructor(props) {
       <div className="App">
       <MuiThemeProvider>
       <AppBar title="COMPOSER"/>
-      	<Paper style={mainCardStyle}>
-	        <TextField hintText="Sweet Item"/>
-          <FloatingActionButton mini={true} style={buttonStyle} onClick={()=>this.addEntry("new")}>
-            <ContentAdd />
-          </FloatingActionButton>
-	    </Paper>
+      	<TextButtonComponent addItem={this.addEntry} />
 	    <List>
 	    	<ListItem primaryText="Test"/>
 	    </List>
