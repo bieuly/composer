@@ -23,8 +23,9 @@ const listStyle = {
 }
 
 const paperStyle ={
-	width: 500,
-	height: 300,
+	width: 600,
+	margin: 'auto',
+	padding: 30
 }
 
 class App extends Component {
@@ -83,6 +84,7 @@ onDrop(data) {
 	    </List>
 		<FlatButton backgroundColor="#a4c639" label="PDF" secondary={true} onClick={()=>this.printDocument()}/>
 		<Droppable
+				style={paperStyle}
                 types={['item']} // <= allowed drop types 
                 onDrop={this.onDrop.bind(this)}>
                 <Paper id="divToPrint" style={paperStyle}>
