@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Paper from 'material-ui/Paper';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 const mainCardStyle = {
   height: '50%',
@@ -13,17 +16,14 @@ class ComposerBoard extends Component {
 constructor(props) {
     super(props);
     };
-  }
-
 
 	render() {
     	return (
 	
 	<Paper style={mainCardStyle}>
-  {this.props.children}
 	</Paper>
 )
 	}
 }
 
-export default ComposerBoard;
+export default DragDropContext(HTML5Backend)(ComposerBoard);
