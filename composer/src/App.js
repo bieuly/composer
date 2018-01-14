@@ -24,27 +24,7 @@ const listItemStyle = {
 	borderColor: '#00BFFF'
 }
 
-const entrySource = {
-  beginDrag(props) {
-    return {};
-  }
-};
-
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-  }
-}
-
 class App extends Component {
-
-renderEntry(x, y) {
-  const [entryX, entryY] = this.props.entryPosition;
-  if (x === entryX && y === entryY) {
-    return <ListItem primaryText="test123" />;
-  }
-}
 
 constructor(props) {
     super(props);
@@ -68,8 +48,6 @@ constructor(props) {
  }
 
   render() {
-    const x = 12;
-    const y = 12
     return (
       <div className="App">
       <MuiThemeProvider>
@@ -81,7 +59,6 @@ constructor(props) {
    			})}
 	    </List>
       <ComposerBoard>
-      {this.renderPiece(x, y)}
       </ComposerBoard>
 	  </MuiThemeProvider>
       </div>
