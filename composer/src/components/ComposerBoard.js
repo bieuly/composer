@@ -3,12 +3,23 @@ import Paper from 'material-ui/Paper';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+export function moveEntry(toX, toY) {
+  entryPosition = [toX, toY];
+  emitChange();
+}
+
 const mainCardStyle = {
   height: '50%',
   width: '30%',
   margin: 20,
   textAlign: 'center',
   display: 'inline-block',
+};
+
+const squareTarget = {
+  drop(props, monitor) {
+    moveEntry(props.x, props.y);
+  }
 };
 
 class ComposerBoard extends Component {
@@ -19,8 +30,8 @@ constructor(props) {
 
 	render() {
     	return (
-	
 	<Paper style={mainCardStyle}>
+          {this.props.children}
 	</Paper>
 )
 	}

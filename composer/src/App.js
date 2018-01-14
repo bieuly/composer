@@ -24,6 +24,13 @@ function collect(connect, monitor) {
 
 class App extends Component {
 
+renderEntry(x, y) {
+  const [entryX, entryY] = this.props.entryPosition;
+  if (x === entryX && y === entryY) {
+    return <ListItem primaryText="test123" />;
+  }
+}
+
 constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +45,8 @@ constructor(props) {
  }
 
   render() {
+    const x = 12;
+    const y = 12
     return (
       <div className="App">
       <MuiThemeProvider>
@@ -46,7 +55,9 @@ constructor(props) {
 	    <List>
 	    	<ListItem primaryText="Test"/>
 	    </List>
-      <ComposerBoard />
+      <ComposerBoard>
+      {this.renderPiece(x, y)}
+      </ComposerBoard>
 	  </MuiThemeProvider>
       </div>
     );
