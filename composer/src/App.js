@@ -34,7 +34,6 @@ constructor(props) {
  	var newList = this.state.entries.slice()
 	newList.push(evt)
 	this.setState({ entries: newList })
-	console.log(this.state.entries)
  }
 
   render() {
@@ -42,7 +41,7 @@ constructor(props) {
       <div className="App">
       <MuiThemeProvider>
       <AppBar title="COMPOSER"/>
-      	<TextButtonComponent addItem={this.addEntry} />
+      	<TextButtonComponent addItem={this.addEntry.bind(this)} />
 	    <List>
 	    	<ListItem primaryText="Test"/>
 	    </List>

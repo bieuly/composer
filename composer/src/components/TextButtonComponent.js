@@ -28,12 +28,15 @@ constructor(props) {
     };
   }
 
+handleOnChange(evt) {
+  this.setState({value: evt.target.value})
+}
 
 	render() {
     	return (
 	
 	<Paper style={mainCardStyle}>
-	        <TextField hintText="Item" value={this.state.value} onChange={()=>{this.state.value=this.props.value}} />
+	        <TextField hintText="Item" onChange={this.handleOnChange.bind(this)} />
           <FloatingActionButton mini={true} style={buttonStyle} onClick={()=>this.props.addItem(this.state.value)}>
             <ContentAdd />
           </FloatingActionButton>
